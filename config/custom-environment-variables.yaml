@@ -1,0 +1,22 @@
+openweathermap:
+  apikey: OWM_API_KEY
+  station:
+    id: OWM_STATION_ID
+    publicid: OWM_STATION_PUBLICID
+    name: OWM_STATION_NAME
+    latitude: OWM_STATION_LATITUDE
+    longitude: OWM_STATION_LONGITUDE
+    altitude: OWM_STATION_ELEVATION
+mqtt:
+  host: MQTT_HOST
+  options:
+    clientId: MQTT_CLIENTID
+    keepalive: MQTT_KEAPALIVE
+    reconnectPeriod: MQTT_RECONNECTPERIOD
+    clean: MQTT_CLEAN
+  conditiontopics:
+    temperature: TOPIC_TEMPERATURE
+    humidity: TOPIC_HUMIDITY
+    wind_speed: TOPIC_WIND_SPEED
+    wind_dir: TOPIC_WIND_DIR
+    rain_1h: TOPIC_RAIN_1H

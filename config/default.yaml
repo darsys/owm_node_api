@@ -1,0 +1,23 @@
+openweathermap:
+  url: http://api.openweathermap.org/data/3.0
+  apikey: your_owm_api_key
+  station:
+    id: staiion_id
+    publicid: station_publicID
+    name: station name
+    latitude: 31.676569
+    longitude: -99.103462
+    altitude: 690
+mqtt:
+  host: mqtt://localhost
+  options:
+    clientId: owm_node_client
+    keepalive: 60
+    reconnectPeriod: 1000
+    clean: true
+  conditiontopics:
+    temperature: /myweatherstation/temperature_C
+    humidity: /myweatherstation/humidity
+    wind_speed: /myweatherstation/wind_avg_km_h
+    wind_dir: /myweatherstation/wind_dir
+    rain_1h: /myweatherstation/rain_inch
