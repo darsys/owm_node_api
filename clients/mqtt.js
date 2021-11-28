@@ -41,7 +41,7 @@ class mqttClient extends EventEmitter {
 
   createConditions = () => {
     for (const [condition, topic] of Object.entries(conditionTopics)) {
-      console.debug(`create condition ${condition} with topic ${topic}`)
+      console.debug(`mqtt: create condition ${condition} with topic ${topic}`)
       this.#conditions[topic] = (new Condition(condition, topic))
     }
   }
@@ -51,8 +51,7 @@ class mqttClient extends EventEmitter {
       this.handleMessage(topic,message)
     })
     this.client.on('connect', () => {
-      console.debug(this)
-      console.log('mqtt connected')
+      console.log(`mqtt: connected successfully to ${this.config.mqttConfig.host}`)
       this.subscribeToTopics()
     })
     this.client.on('close', function () {

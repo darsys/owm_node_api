@@ -1,20 +1,12 @@
 const wdt = require('./weatherdatatools/weatherdatatools')
 
 class owmCondition {
-  // "station_id": "583436dd9643a9000196b8d6",
-  // "dt": 1479817340,
-  temperature = 0 // Celcius
+  temperature = new wdt.condition_tracker('C',3600)
+  humidity = new wdt.humidity('%',3600)
   wind_speed = 0.0 // m/s
   wind_gust = 0.0 // m/s
   pressure = 0 // Hectopascal
-  humidity = 0 // %
   rain_1h = 0 // mm in last hour
-  // "clouds": [
-  //   {
-  //       "condition": "NSC"
-  //   }
-  // ]
-
 }
 
 // owm json data example

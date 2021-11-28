@@ -10,7 +10,7 @@ const mqttConfig = {
   options: {
     // username: process.env.MQTT_USERNAME,
     // password: process.env.MQTT_PASSWORD,
-    clientId: config.get('mqtt.options.clientId'),
+    clientId: config.get('mqtt.host'),
     keepalive: config.get('mqtt.options.keepalive'),
     reconnectPeriod: config.get('mqtt.options.reconnectPeriod'),
     clean: config.get('mqtt.options.clean')
@@ -19,22 +19,20 @@ const mqttConfig = {
 // console.log('MQTT Config:', JSON.stringify(mqttConfig, undefined, 2))
 
 const conditionTopics = {
-  temperature: process.env.TOPIC_TEMPERATURE,
-  humidity: process.env.TOPIC_HUMIDITY,
-  wind_speed: process.env.TOPIC_WIND_SPEED,
-  wind_dir: process.env.TOPIC_WIND_DIR,
-  rain_1h: process.env.TOPIC_RAIN_1H
+  temperature: config.get('mqtt.conditiontopics.temperature'),
+  humidity: config.get('mqtt.conditiontopics.humidity'),
+  wind_speed: config.get('mqtt.conditiontopics.wind_speed'),
+  wind_dir: config.get('mqtt.conditiontopics.wind_dir'),
+  rain_1h: config.get('mqtt.conditiontopics.rain_1h'),
 }
 
 var currentConditions = {}
-console.debug(process.env.DEBUG)
-console.log('mqtt create client and connect')
-console.error('error')
 
+console.log(`mqtt create client and connect to : ${mqttConfig}`)
 var client = new mqttClient(mqttConfig, conditionTopics )
 
 client.on("update", (conditions) => {
-  console.debug(`mqtt update fired:`)
+  // console.debug(`mqtt update fired:`)
   console.debug(conditions)
 })
 

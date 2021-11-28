@@ -4,7 +4,7 @@
   "description": "OpenWeatherMap Node API",
   "main": "own_publisher.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Damon L. Vincent",
   "license": "MIT",
@@ -13,9 +13,11 @@
     "config": "^3.3.6",
     "debug": "^4.3.2",
     "mathjs": "^10.0.0",
+    "mocha": "^9.1.3",
     "mqtt": "^4.2.8"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
     "dotenv": "^8.2.0",
     "eslint": "^8.2.0"
   }

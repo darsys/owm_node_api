@@ -1,25 +1,26 @@
-require('dotenv').config()
 const axios = require('axios')
+const config = require('config')
 
 const owmApiConfig = {
   url: process.env.OWM_URL,
   apiKey: process.env.OWM_API_KEY,
   mystation: {
-    external_id: process.env.OWM_STATION_PUBLICID,
-    name: process.env.OWM_STATION_NAME,
-    latitude: process.env.OWM_STATION_LATITUDE,
-    longitude: process.env.OWM_STATION_LONGITUDE,
-    altitude: process.env.OWM_STATION_ALTITUDE
+    station_id: config.get('openweathermap.station.id'),
+    external_id: config.get('openweathermap.station.publicid'),
+    name: config.get('openweathermap.station.name'),
+    latitude: config.get('openweathermap.station.latitude'),
+    longitude: config.get('openweathermap.station.longitude'),
+    altitude: config.get('openweathermap.station.longitude')
   }
 }
-console.log('OpenWeatherMap API Config:', JSON.stringify(owmApiConfig, undefined, 2))
+console.log('OpenWeatherMap API Station Info:', JSON.stringify(owmApiConfig.mystation, undefined, 2))
 
 function updateStationData (conditions) {
-  conditions.station_id = '5e275c9c6c634e00011e046b'
+  // conditions.station_id = '5e275c9c6c634e00011e046b'
   conditions.dt = unixDT()
+  conditions.station_id = owmApiConfig.mystation.station_id
   var cA = [conditions]
-  // console.debug(`Update OWM with this json:`)
-  // console.debug(JSON.stringify(cA, undefined, 2))
+  console.debug(`Update OWM with this json: ${JSON.stringify(cA, undefined, 2)}`)
   axios({
     method: 'post',
     url: owmApiConfig.url + '/measurements',

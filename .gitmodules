@@ -1,0 +1,3 @@
+[submodule "weatherdatatools"]
+	path = weatherdatatools
+	url = git@github.com:darsys/weatherdatatools.git
