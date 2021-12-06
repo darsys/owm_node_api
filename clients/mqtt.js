@@ -1,8 +1,8 @@
 require('dotenv').config()
 const mqtt = require('mqtt')
 const EventEmitter = require("events")
-const wdt = require('../weatherdatatools')
-const config = require('config')
+// const wdt = require('../weatherdatatools')
+// const config = require('config')
 //const owmCondition = require('./owmConditions')
 
 

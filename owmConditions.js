@@ -2,10 +2,10 @@ const wdt = require('./weatherdatatools/weatherdatatools')
 
 class owmCondition {
   temperature = new wdt.condition_tracker('C',3600)
-  humidity = new wdt.humidity('%',3600)
-  wind_speed = 0.0 // m/s
-  wind_gust = 0.0 // m/s
-  pressure = 0 // Hectopascal
+  humidity = new wdt.humidity('%', 300)
+  wind_speed = new wdt.wind_speed('m/s', 300)
+  wind_gust = new wdt.wind_dir()
+  pressure = new wdt.pressure()
   rain_1h = 0 // mm in last hour
 }
 
