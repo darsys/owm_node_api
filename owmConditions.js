@@ -1,12 +1,12 @@
 const wdt = require('./weatherdatatools/weatherdatatools')
 
-class owmCondition {
-  temperature = new wdt.condition_tracker('C',3600)
-  humidity = new wdt.humidity('%', 300)
+class owmConditions {
+  temperature = new wdt.condition()
+  humidity = new wdt.humidity()
   wind_speed = new wdt.wind_speed('m/s', 300)
   wind_gust = new wdt.wind_dir()
   pressure = new wdt.pressure()
-  rain_1h = 0 // mm in last hour
+  rain = 0 // mm in last hour
 }
 
 // owm json data example
@@ -26,4 +26,4 @@ class owmCondition {
 //   ]
 // }
 
-module.exports = owmCondition
+module.exports = owmConditions

@@ -2,7 +2,7 @@ openweathermap:
   url: http://api.openweathermap.org/data/3.0
   apikey: your_owm_api_key
   station:
-    id: staiion_id
+    id: station_id
     publicid: station_publicID
     name: station name
     latitude: 31.676569

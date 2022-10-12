@@ -13,14 +13,15 @@ const owmApiConfig = {
     altitude: config.get('openweathermap.station.longitude')
   }
 }
-console.log('OpenWeatherMap API Station Info:', JSON.stringify(owmApiConfig.mystation, undefined, 2))
+console.log('OpenWeatherMap API Info:', JSON.stringify(owmApiConfig, undefined, 2))
 
 function updateStationData (conditions) {
+  // console.debug(conditions)
   // conditions.station_id = '5e275c9c6c634e00011e046b'
   conditions.dt = unixDT()
   conditions.station_id = owmApiConfig.mystation.station_id
   var cA = [conditions]
-  console.debug(`Update OWM with this json: ${JSON.stringify(cA, undefined, 2)}`)
+  console.debug(`Update OWM at ${owmApiConfig.url} with this json: ${JSON.stringify(cA, undefined, 2)}`)
   axios({
     method: 'post',
     url: owmApiConfig.url + '/measurements',
@@ -28,7 +29,7 @@ function updateStationData (conditions) {
       'Content-Type': 'application/json'
     },
     params: {
-      APPID: owmApiConfig.apiKey
+      appid: owmApiConfig.apiKey
     },
     data: cA
   })
@@ -38,7 +39,22 @@ function updateStationData (conditions) {
       // console.debug('response data:', response.data)
     })
     .catch(function (error) {
-      console.error(error)
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+      console.error(error.config);
     })
     .finally(function () {
       // always executed

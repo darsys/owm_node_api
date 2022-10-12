@@ -34,9 +34,11 @@ var client = new mqttClient(mqttConfig, conditionTopics )
 client.on("update", (conditions) => {
   // console.debug(`mqtt update fired:`)
   console.debug(conditions)
+  currentConditions = conditions
 })
 
 function updateOWMConditions() {
+  // console.debug(currentConditions)
   owm.updateStationData(currentConditions)
 }
 
